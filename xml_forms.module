@@ -39,3 +39,30 @@ function xml_forms_get_schema($filename) {
     drupal_not_found();
   }
 }
+
+/**
+ * Implements Hook Form Alter.
+ */
+function xml_forms_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'xml_form_builder_datastream_form') {
+    foreach ($form as $k => $element) {
+      $form[$k] = _adjust_maxlength($element);
+    }
+  }
+}
+
+/** 
+ * Helper function to recursively add the maxlength value to any "textfield" elements from the form
+ */
+function _adjust_maxlength(&$element) {
+  if (isset($element['#type']) && $element['#type'] == 'textfield') {
+    $element['#maxlength'] = 1024;
+  }
+  if (is_array($element)) {
+    foreach ($element as $k => $element_children) {
+      $element[$k] = _adjust_maxlength($element_children);
+    }
+  }
+  return $element;
+}
+
