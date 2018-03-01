@@ -72,6 +72,7 @@
                     <oai_dc:dc
                         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
                         <xsl:apply-templates/>
+                        <dc:relation>pdcp_noharvest</dc:relation>
                     </oai_dc:dc>
                 </xsl:for-each>
             </xsl:otherwise>
