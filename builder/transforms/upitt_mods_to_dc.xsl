@@ -394,15 +394,17 @@
             </xsl:when>
             <xsl:when test="copyrightMD:copyright[@copyright.status='unknown']">
                 <dc:rights>
-                    <xsl:text>Copyright Not Evaluated. The copyright and related rights status of this Item has not been evaluated. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.</xsl:text>
+                    <xsl:text>The copyright and related rights status of this Item has been reviewed by the organization that has made the Item available, but the organization was unable to make a conclusive determination as to the copyright status of the Item. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.</xsl:text>
+<!--                    <xsl:text>Copyright Not Evaluated. The copyright and related rights status of this Item has not been evaluated. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.</xsl:text> -->
                 </dc:rights>
-                <dc:rights>http://rightsstatements.org/vocab/CNE/1.0/</dc:rights>
+                <dc:rights>http://rightsstatements.org/vocab/UND/1.0/</dc:rights>
             </xsl:when>
             <xsl:otherwise>
                 <dc:rights>
-                    <xsl:text>Copyright Not Evaluated. The copyright and related rights status of this Item has not been evaluated. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.</xsl:text>
+                    <xsl:text>The copyright and related rights status of this Item has been reviewed by the organization that has made the Item available, but the organization was unable to make a conclusive determination as to the copyright status of the Item. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.</xsl:text>
+<!--                    <xsl:text>Copyright Not Evaluated. The copyright and related rights status of this Item has not been evaluated. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.</xsl:text> -->
                 </dc:rights>
-                <dc:rights>http://rightsstatements.org/vocab/CNE/1.0/</dc:rights>
+                <dc:rights>http://rightsstatements.org/vocab/UND/1.0/</dc:rights>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
