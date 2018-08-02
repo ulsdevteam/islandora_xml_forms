@@ -52,6 +52,8 @@
 
     <xsl:output method="xml" indent="yes"/>
 
+    <xsl:param name="pid" select="defaultvalue"/>
+
     <xsl:template match="/">
         <xsl:choose>
             <!-- WS: updated schema location -->
@@ -298,13 +300,17 @@
         </xsl:for-each>
     </xsl:template>-->
 
-    <xsl:template match="mods:identifier">
+<!-- BGG - adjusted to only pass the PID of the object here -->
+    <xsl:template match="mods">
         <dc:identifier>
-            <xsl:variable name="type"
+            <xsl:value-of select="$pid"/>
+        </dc:identifier>
+    </xsl:template>
+<!--            <xsl:variable name="type"
                 select="translate(@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
             <xsl:choose>
-                <!-- 2.0: added identifier type attribute to output, if it is present-->
-                <xsl:when test="contains(.,':')">
+              --><!-- 2.0: added identifier type attribute to output, if it is present-->
+<!--                <xsl:when test="contains(.,':')">
                     <xsl:value-of select="."/>
                 </xsl:when>
                 <xsl:when test="@type">
@@ -318,7 +324,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </dc:identifier>
-    </xsl:template>
+    </xsl:template> -->
 
     <xsl:template match="mods:location">
         <xsl:for-each select="mods:url">
@@ -394,15 +400,13 @@
             </xsl:when>
             <xsl:when test="copyrightMD:copyright[@copyright.status='unknown']">
                 <dc:rights>
-                    <xsl:text>The copyright and related rights status of this Item has been reviewed by the organization that has made the Item available, but the organization was unable to make a conclusive determination as to the copyright status of the Item. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.</xsl:text>
-<!--                    <xsl:text>Copyright Not Evaluated. The copyright and related rights status of this Item has not been evaluated. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.</xsl:text> -->
+                    <xsl:text>Copyright Undetermined. The copyright and related rights status of this Item has been reviewed by the organization that has made the Item available, but the organization was unable to make a conclusive determination as to the copyright status of the Item. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.</xsl:text>
                 </dc:rights>
                 <dc:rights>http://rightsstatements.org/vocab/UND/1.0/</dc:rights>
             </xsl:when>
             <xsl:otherwise>
                 <dc:rights>
-                    <xsl:text>The copyright and related rights status of this Item has been reviewed by the organization that has made the Item available, but the organization was unable to make a conclusive determination as to the copyright status of the Item. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.</xsl:text>
-<!--                    <xsl:text>Copyright Not Evaluated. The copyright and related rights status of this Item has not been evaluated. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.</xsl:text> -->
+                    <xsl:text>Copyright Undetermined. The copyright and related rights status of this Item has been reviewed by the organization that has made the Item available, but the organization was unable to make a conclusive determination as to the copyright status of the Item. Please refer to the organization that has made the Item available for more information. You are free to use this Item in any way that is permitted by the copyright and related rights legislation that applies to your use.</xsl:text>
                 </dc:rights>
                 <dc:rights>http://rightsstatements.org/vocab/UND/1.0/</dc:rights>
             </xsl:otherwise>

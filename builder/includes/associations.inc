@@ -203,7 +203,7 @@ function xml_form_builder_get_transform_file($transform) {
  * @return DOMDocument
  *   The transformed document.
  */
-function xml_form_builder_transform_document($transform, $source_document) {
+function xml_form_builder_transform_document($transform, $source_document, $params = NULL) {
   if ($transform !== NULL) {
     if ($transform instanceof DOMDocument) {
       $xsl = $transform;
@@ -213,6 +213,9 @@ function xml_form_builder_transform_document($transform, $source_document) {
       $xsl->load($transform);
     }
     $xslt = new XSLTProcessor();
+    if (is_array($params) && array_key_exists('pid', $params)) {
+      $xslt->setParameter( '', 'pid', $params['pid']);
+    }
     $xslt->importStyleSheet($xsl);
     $document = $xslt->transformToDoc($source_document);
     if ($document && isset($document->documentElement)) {

@@ -52,6 +52,8 @@
 
     <xsl:output method="xml" indent="yes"/>
 
+    <xsl:param name="pid" select="defaultvalue"/>
+
     <xsl:template match="/">
         <xsl:choose>
             <!-- WS: updated schema location -->
@@ -299,12 +301,19 @@
         </xsl:for-each>
     </xsl:template>-->
 
-    <xsl:template match="mods:identifier">
+<!-- BGG - adjusted to only pass the PID of the object here -->
+    <xsl:template match="mods">
+        <dc:identifier>
+            <xsl:value-of select="$pid"/>
+        </dc:identifier>
+    </xsl:template>
+
+<!--    <xsl:template match="mods:identifier">
         <dc:identifier>
             <xsl:variable name="type"
                 select="translate(@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
             <xsl:choose>
-                <!-- 2.0: added identifier type attribute to output, if it is present-->
+             --><!-- 2.0: added identifier type attribute to output, if it is present--><!-- 
                 <xsl:when test="contains(.,':')">
                     <xsl:value-of select="."/>
                 </xsl:when>
@@ -319,7 +328,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </dc:identifier>
-    </xsl:template>
+    </xsl:template> -->
 
     <xsl:template match="mods:location">
         <xsl:for-each select="mods:url">
