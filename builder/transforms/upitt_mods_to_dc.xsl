@@ -52,7 +52,7 @@
 
     <xsl:output method="xml" indent="yes"/>
 
-    <xsl:param name="pid" select="defaultvalue"/>
+    <xsl:param name="pid" select="defaultvalue" />
 
     <xsl:template match="/">
         <xsl:choose>
@@ -72,8 +72,11 @@
             <xsl:otherwise>
                 <xsl:for-each select="mods:mods">
                     <oai_dc:dc
-                        xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+                        xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd" xmlns:dc="http://purl.org/dc/elements/1.1/">
                         <xsl:apply-templates/>
+        <xsl:element name="dc:identifier">
+            <xsl:value-of select="$pid"/>
+        </xsl:element>
                     </oai_dc:dc>
                 </xsl:for-each>
             </xsl:otherwise>
@@ -301,11 +304,14 @@
     </xsl:template>-->
 
 <!-- BGG - adjusted to only pass the PID of the object here -->
-    <xsl:template match="mods">
-        <dc:identifier>
+<!--    <xsl:template name="add_identifier">
+        <xsl:element name="dc:identifier">
             <xsl:value-of select="$pid"/>
-        </dc:identifier>
+        </xsl:element>
     </xsl:template>
+-->
+
+
 <!--            <xsl:variable name="type"
                 select="translate(@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
             <xsl:choose>
