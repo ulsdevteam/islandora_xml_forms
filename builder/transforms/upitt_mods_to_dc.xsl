@@ -332,13 +332,14 @@
         </dc:identifier>
     </xsl:template> -->
 
-    <xsl:template match="mods:location">
+<!-- uls_pid_as_dcidentifier we do not want location/url node values to spawn off dc:identifier values either -->
+<!--    <xsl:template match="mods:location">
         <xsl:for-each select="mods:url">
             <dc:identifier>
                 <xsl:value-of select="."/>
             </dc:identifier>
         </xsl:for-each>
-    </xsl:template>
+    </xsl:template> -->
 
     <xsl:template match="mods:language">
         <dc:language>
