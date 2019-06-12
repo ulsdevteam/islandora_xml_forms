@@ -205,7 +205,6 @@
         </xsl:for-each>
 
     </xsl:template>
-
     <xsl:template match="mods:dateIssued | mods:dateCreated">
         <dc:date>
             <xsl:choose>
@@ -331,7 +330,6 @@
             </xsl:choose>
         </dc:identifier>
     </xsl:template> -->
-
 <!-- uls_pid_as_dcidentifier we do not want location/url node values to spawn off dc:identifier values either -->
 <!--    <xsl:template match="mods:location">
         <xsl:for-each select="mods:url">
