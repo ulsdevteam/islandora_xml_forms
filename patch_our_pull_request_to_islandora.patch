@@ -1,0 +1,41 @@
+commit 13d8890188165625ea5bf6eca22fb844700fe334
+Author: Brian Gillingham <bgilling@pitt.edu>
+Date:   Thu Oct 6 13:41:30 2016 -0400
+
+    ISLANDORA-6, alter all fields that are textfield in xml_form_builder_datastream_form to be 1024 characters maxlength
+
+diff --git a/xml_forms.module b/xml_forms.module
+index 2b16905..543d3b0 100644
+--- a/xml_forms.module
++++ b/xml_forms.module
+@@ -39,3 +39,30 @@ function xml_forms_get_schema($filename) {
+     drupal_not_found();
+   }
+ }
++
++/**
++ * Implements Hook Form Alter.
++ */
++function xml_forms_form_alter(&$form, &$form_state, $form_id) {
++  if ($form_id == 'xml_form_builder_datastream_form') {
++    foreach ($form as $k => $element) {
++      $form[$k] = _adjust_maxlength($element);
++    }
++  }
++}
++
++/** 
++ * Helper function to recursively add the maxlength value to any "textfield" elements from the form
++ */
++function _adjust_maxlength(&$element) {
++  if (isset($element['#type']) && $element['#type'] == 'textfield') {
++    $element['#maxlength'] = 1024;
++  }
++  if (is_array($element)) {
++    foreach ($element as $k => $element_children) {
++      $element[$k] = _adjust_maxlength($element_children);
++    }
++  }
++  return $element;
++}
++
