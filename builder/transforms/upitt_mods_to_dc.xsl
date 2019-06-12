@@ -191,7 +191,7 @@
     <xsl:template match="mods:originInfo">
         <xsl:apply-templates select="*[@point='start']"/>
         <xsl:for-each
-            select="mods:dateIssued[@point!='start' and @point!='end'] |mods:dateCreated[@point!='start' and @point!='end'] | mods:dateCaptured[@point!='start' and @point!='end'] | mods:dateOther[@point!='start' and @point!='end']">
+            select="mods:dateIssued[@point!='start' and @point!='end'] |mods:dateCreated[@point!='start' and @point!='end'] | mods:dateOther[@point!='start' and @point!='end']">
             <dc:date>
                 <xsl:value-of select="."/>
             </dc:date>
@@ -205,8 +205,7 @@
         </xsl:for-each>
 
     </xsl:template>
-
-    <xsl:template match="mods:dateIssued | mods:dateCreated | mods:dateCaptured">
+    <xsl:template match="mods:dateIssued | mods:dateCreated">
         <dc:date>
             <xsl:choose>
                 <xsl:when test="@point='start'">
@@ -224,7 +223,7 @@
     </xsl:template>
 
     <xsl:template
-        match="mods:dateIssued[@point='start'] | mods:dateCreated[@point='start'] | mods:dateCaptured[@point='start'] | mods:dateOther[@point='start'] ">
+        match="mods:dateIssued[@point='start'] | mods:dateCreated[@point='start'] | mods:dateOther[@point='start'] ">
         <xsl:variable name="dateName" select="local-name()"/>
         <dc:date>
             <xsl:value-of select="."/>-<xsl:value-of
@@ -331,14 +330,14 @@
             </xsl:choose>
         </dc:identifier>
     </xsl:template> -->
-
-    <xsl:template match="mods:location">
+<!-- uls_pid_as_dcidentifier we do not want location/url node values to spawn off dc:identifier values either -->
+<!--    <xsl:template match="mods:location">
         <xsl:for-each select="mods:url">
             <dc:identifier>
                 <xsl:value-of select="."/>
             </dc:identifier>
         </xsl:for-each>
-    </xsl:template>
+    </xsl:template> -->
 
     <xsl:template match="mods:language">
         <dc:language>
